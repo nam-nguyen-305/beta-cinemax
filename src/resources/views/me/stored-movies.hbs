@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="mt-4 mb-5">
+    <div class="trash">
+      <h3 class="title-admin">Danh sách phim</h3>
+      <div class="action mb-3">
+        <a class="mr-3 action-item"href="/movies/create">Thêm phim</a>
+        <a class="mr-3 action-item" href="/me/trash/movies">Phim đã xóa ({{deletedCount}}) &#8594;</a>
+      </div>
+    </div>
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tên</th>
+          <th scope="col">Thể loại</th>
+          <th scope="col">Đạo diễn</th>
+          <th scope="col" colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each movies}}
+          <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.director}}</td>
+            <td>
+              <a href="/movies/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+              <a
+                href=""
+                class="btn btn-link"
+                data-toggle="modal"
+                data-target="#deleteMovieModal"
+                data-id="{{this._id}}"
+              >Xóa</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">
+              Bạn chưa đăng phim nào! <a href="/movies/create">Thêm phim?</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{! Confirm Delete }}
+
+  <div id="deleteMovieModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Xóa khóa học ?</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn chắc chắn muốn xóa khóa học này?</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            id="btn-delete-movie"
+            type="button"
+            class="btn btn-danger"
+          >Xóa bỏ</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- Delete-hidden-form --}}
+<form method="POST" name="delete-movie-form"></form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() { 
+    var movieID ;
+    var deleteForm=document.forms['delete-movie-form'];
+    var btnDeleteMovie = document.getElementById('btn-delete-movie'); 
+
+    //When delete confirm click
+    $('#deleteMovieModal').on('show.bs.modal', function (event) { 
+      var button =$(event.relatedTarget) 
+      movieID = button.data('id') }); 
+    //When delete course btn click 
+    btnDeleteMovie.onclick=function() { deleteForm.action='/movies/'+movieID +'?_method=DELETE'; 
+    deleteForm.submit(); } 
+  });
+
+</script>

@@ -1,0 +1,47 @@
+@mixin paddingX($left, $right) {
+    padding-left: $left;
+    padding-right: $right;
+}
+
+@mixin paddingY($top, $bottom) {
+    padding-top: $top;
+    padding-bottom: $bottom;
+}
+
+@mixin marginX($left, $right) {
+    margin-left: $left;
+    margin-right: $right;
+}
+
+@mixin marginY($top, $bottom) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+}
+
+@mixin textTranform($type, $weight) {
+    text-transform: $type;
+    font-weight: $weight;
+}
+
+@mixin border($width, $type, $color) {
+    border: $width $type $color;
+}
+
+@mixin borderTop($width, $type, $color) {
+    border-top: $width $type $color;
+}
+
+@mixin borderBottom($width, $type, $color) {
+    border-bottom: $width $type $color;
+}
+
+@mixin borderRight($width, $type, $color) {
+    border-right: $width $type $color;
+}
+
+@mixin flex($justify, $align, $direction) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}

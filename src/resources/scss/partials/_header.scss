@@ -1,0 +1,41 @@
+.pre-header {
+    color: #fff;
+    border-bottom: 1px solid $white;
+    line-height: 1.2;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    background: $black;
+    font-size: 14px;
+
+    &_item {
+        @include paddingX(8px, 8px);
+        display: inline-block;
+        &.reg {
+            border-left: 1px solid $white;
+        }
+        a {
+            transition: all 0.4s;
+            &:hover {
+                text-decoration: underline;
+                color: #fff;
+            }
+        }
+    }
+}
+.header {
+    &_menu {
+        &_item {
+            a {
+                color: #333;
+                display: block;
+                padding: 24px 12px 24px;
+                font-size: 15;
+                font-weight: 700;
+                text-transform: uppercase;
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}

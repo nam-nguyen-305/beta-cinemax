@@ -1,0 +1,10 @@
+.btn-ticket {
+  background-image: linear-gradient(to right, #0a64a7 0%, #258dcf 51%, #3db1f3 100%) !important;
+  color: #fff;
+  width: 100%; }
+
+.btn-user {
+  color: #fff; }
+  .btn-user:hover {
+    color: #fff;
+    outline: none; }

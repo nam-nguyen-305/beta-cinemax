@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <div class="reg-form mt-4 col-lg-6">
+    <h3 class="title">Đăng ký</h3>
+    <form action="/register" method="POST">
+      <div class="form-group d-flex">
+        <div class="col-lg-6 mb-3">
+          <label for="fullname">
+            <span style="color: red">*</span>&nbsp;Họ tên
+          </label>
+          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Họ tên"/>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label for="email">
+            <span style="color: red">*</span>&nbsp;Email
+          </label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Email"/>
+        </div>
+      </div>
+      <div class="form-group d-flex">
+        <div class="col-lg-6 mb-3">
+          <label for="password">
+            <span style="color: red">*</span>&nbsp;Mật khẩu
+          </label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu"/>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label for="confirmPassword">
+            <span style="color: red">*</span>&nbsp;Xác nhận lại mật khẩu
+          </label>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu"/>
+        </div>
+      </div>
+      <div class="form-group d-flex">
+        <div class="col-lg-6 mb-3">
+          <label for="age">
+            <span style="color: red">*</span>&nbsp;Tuổi 
+          </label>
+          <input type="number" class="form-control" id="age" name="age" placeholder="Tuổi"/>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label for="gender">Giới tính</label>
+          <div class="maxl">
+            <label class="radio inline">
+              <input type="radio" name="gender" value="male" checked>
+              <span>Nam</span>
+            </label>
+            <label class="radio inline">
+              <input type="radio" name="gender" value="female">
+              <span>Nữ</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group d-flex">
+        <div class="col-lg-6 mb-3">
+          <label for="phone">
+            <span style="color: red">*</span>&nbsp;Số điện thoại
+          </label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Số điện thoại"/>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-submit">Đăng ký</button>
+    </form>
+  </div>
+</div>

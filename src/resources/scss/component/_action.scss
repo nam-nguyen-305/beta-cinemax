@@ -1,0 +1,9 @@
+.action-item {
+    font-weight: 700;
+    font-size: 17px;
+    &:not(:last-child)::after{
+        content: "|";
+        padding-left: 20px;
+        height: 100%;
+    }
+}

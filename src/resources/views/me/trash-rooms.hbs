@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="mt-4 mb-5">
+    <div class="trash">
+      <h3 class="title-admin">Phòng đã xóa</h3>
+      <a class="d-block mb-3 action-item" href="/me/stored/rooms">&#8592; Danh sách phòng</a>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tên</th>
+          <th scope="col">Số hàng</th>
+          <th scope="col" colspan="2">Số cột</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each rooms}}
+          <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.rows}}</td>
+            <td>{{this.cols}}</td>
+            <td>
+              <a href="" data-id="{{this._id}}" class="btn btn-link btn-restore">Khôi phục</a>
+              <a
+                href=""
+                class="btn btn-link"
+                data-toggle="modal"
+                data-target="#deleteRoomModal"
+                data-id="{{this._id}}"
+              >Xóa vĩnh viễn</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">
+              Thùng rác trống <a class="d-block" href="/me/stored/rooms">Thêm phòng?</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{! Confirm Delete }}
+
+  <div id="deleteRoomModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Xóa khóa học ?</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn chắc chắn muốn xóa phòng này?</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            id="btn-delete-room"
+            type="button"
+            class="btn btn-danger"
+          >Xóa bỏ</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- Delete-hidden-form --}}
+<form method="POST" name="delete-room-form"></form>
+<form name="restore-room-form" method="POST"></form>
+<script>
+  document.addEventListener("DOMContentLoaded", function() { 
+    var movieID ;
+    var deleteForm=document.forms['delete-room-form'];
+    var restoreForm=document.forms['restore-room-form'] 
+    var btnDeleteRoom = document.getElementById('btn-delete-room');
+    var restoreBtn = $('.btn-restore') ;
+
+    //When delete confirm click
+    $('#deleteRoomModal').on('show.bs.modal', function (event) { 
+      var button =$(event.relatedTarget) 
+      roomID = button.data('id') }); 
+    //When delete course btn click 
+    btnDeleteRoom.onclick=function() { deleteForm.action='/rooms/'+roomID +'/force?_method=DELETE'; 
+    deleteForm.submit(); } 
+
+    restoreBtn.click(function(e) {
+        e.preventDefault();
+        var roomID = $(this).data('id')
+        restoreForm.action='/rooms/' + roomID +'/restore?_method=PATCH';
+        restoreForm.submit(); 
+      })
+  });
+
+</script>

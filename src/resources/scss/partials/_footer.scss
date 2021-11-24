@@ -1,0 +1,43 @@
+.footer {
+    border-top: 2px solid #ccc;
+    margin-top: 90px;
+    &_left {
+        font-size: 14px;
+        font-weight: 600;
+
+        img {
+            width: 80%;
+        }
+    }
+    &_title {
+        display: inline-block;
+        font-size: 20px;
+        padding-bottom: 7px;
+        margin: 0 0 15px;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-bottom: 4px solid transparent;
+        border-image: linear-gradient(to right, #39adf0 0%, #075fa3 100%);
+        border-image-slice: 1;
+    }
+    &_connect {
+        .social {
+            font-size: 20px;
+        }
+    }
+    &_contact {
+        .coop {
+            font-size: 15px;
+            font-weight: 700;
+        }
+        h5,
+        p {
+            @include marginY(10px,10px);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .mail {
+            font-weight: 700;
+        }
+    }
+}

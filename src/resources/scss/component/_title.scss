@@ -1,0 +1,32 @@
+.title {
+    font-size: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    @include paddingY(10px, 10px);
+    background-color: $title-color;
+    color: white;
+}
+.title-center {
+    margin-bottom: 30px;
+    font-size: 33px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    border-bottom: 4px solid transparent;
+    border-image: linear-gradient(to right, #39adf0 0%, #075fa3 100%);
+    border-image-slice: 1;
+    border-width: 0px 0px 4px 0px;
+}
+.title-admin {
+    margin-bottom: 30px;
+    font-size: 33px;
+    color: #075fa3;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    border-bottom: 4px solid transparent;
+    border-image: linear-gradient(to right, #39adf0 0%, #075fa3 100%);
+    border-image-slice: 1;
+    border-width: 0px 0px 4px 0px;
+}

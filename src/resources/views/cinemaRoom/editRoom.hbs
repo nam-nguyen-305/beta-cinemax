@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="mt-4">
+    <h3 class="title-admin">Sửa phim</h3>
+    <a  class="d-block mb-3 action-item" href="/me/stored/rooms">Danh sách phòng &#8594;</a>
+    <form class="mx-auto col-lg-6" method="POST" action="/rooms/{{room._id}}?_method=PUT">
+      <div class="form-group">
+        <label for="name">Tên phòng</label>
+        <input type="text" class="form-control" value="{{room.name}}" id="name" name="name" />
+      </div>
+      <div class="form-group">
+        <label for="rows">Số hàng</label>
+        <input type="text" class="form-control" value="{{room.rows}}" id="rows" name="rows" />
+      </div>
+      <div class="form-group">
+        <label for="cols">Số cột</label>
+        <input type="text" class="form-control" value="{{room.cols}}" id="cols" name="cols" />
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>

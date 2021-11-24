@@ -1,0 +1,26 @@
+.movie {
+    &-img {
+        border-radius: 20px;
+    }
+    &-title {
+        @include marginY(5px, 20px);
+        color: $title-color;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1.7;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    &-text {
+        font-size: 15px;
+        @include marginY(5px, 5px);
+        span {
+            font-weight: 700;
+        }
+    }
+}

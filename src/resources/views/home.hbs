@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="mt-4">
+    <div class="row">
+      {{#each movies}}
+      <div class="col-sm-6 col-lg-3">
+          <div class="movie movie-movie-item pb-5">
+            <a href="/movies/{{this.slug}}">
+              <img src="{{this.img}}" class="movie-img" alt="{{this.name}}" />
+            </a>
+            <div class="movie-body">
+              <a href="/movies/{{this.slug}}">
+                <h5 class="movie-title">{{this.name}}</h5>
+              </a>
+              <p class="movie-text"><span>Thể loại:</span> {{this.category}}</p>
+              <p class="movie-text"><span>Thời lượng:</span> {{this.time}} phút</p>
+              <a href="#" class="btn btn-ticket mt-4">Mua Vé</a>
+            </div>
+          </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

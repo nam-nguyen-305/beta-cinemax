@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="mt-4 mb-5">
+    <div class="trash">
+      <h3 class="title-admin">Danh sách phòng</h3>
+      <div class="action mb-3">
+        <a class=" mr-3 action-item"href="/rooms/create">Thêm Phòng</a>
+        <a  class="mr-3 action-item" href="/me/trash/rooms">Phòng đã xóa ({{deletedCount}}) &#8594;</a>
+      </div>
+      
+    </div>
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tên phòng</th>
+          <th scope="col">Số hàng</th>
+          <th scope="col">Số cột</th>
+          <th scope="col" ></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each rooms}}
+          <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.rows}}</td>
+            <td>{{this.cols}}</td>
+            <td>
+              <a href="/rooms/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+              <a
+                href=""
+                class="btn btn-link"
+                data-toggle="modal"
+                data-target="#deleteRoomModal"
+                data-id="{{this._id}}"
+              >Xóa</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">
+              Bạn chưa đăng phim nào! <a href="/rooms/create">Thêm phòng</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{! Confirm Delete }}
+
+  <div id="deleteRoomModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Xóa phòng</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn chắc chắn muốn xóa phòng này?</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            id="btn-delete-room"
+            type="button"
+            class="btn btn-danger"
+          >Xóa bỏ</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- Delete-hidden-form --}}
+<form method="POST" name="delete-room-form"></form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() { 
+    var roomID ;
+    var deleteForm=document.forms['delete-room-form'];
+    var btnDeleteRoom = document.getElementById('btn-delete-room'); 
+
+    //When delete confirm click
+    $('#deleteRoomModal').on('show.bs.modal', function (event) { 
+      var button =$(event.relatedTarget) 
+      roomID = button.data('id') }); 
+    //When delete course btn click 
+    btnDeleteRoom.onclick=function() { deleteForm.action='/rooms/'+roomID +'?_method=DELETE'; 
+    deleteForm.submit(); } 
+  });
+
+</script>

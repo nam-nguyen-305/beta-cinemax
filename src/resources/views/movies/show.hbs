@@ -1,0 +1,133 @@
+<div class="movie-detail mt-4">
+  <div class="container">
+    <h3 class="breadcrumb pl-0">
+      Trang chủ >
+      <span> {{movie.name}}</span>
+    </h3>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="movie-detail_img">
+          <img src="{{movie.img}}" alt="{{movie.name}}" />
+        </div>
+      </div>
+      <div class="col-md-9">
+        <h1 class="movie-detail_name mb-4">{{movie.name}}</h1>
+        <p class="movie-detail_summary mb-4">{{movie.summary}}</p>
+        <div class="movie-detail_info d-flex">
+          <div class="col-md-3 pl-0"><span>ĐẠO DIỄN:</span></div>
+          <div class="col-md-9">{{movie.director}}</div>
+        </div>
+        <div class="movie-detail_info d-flex">
+          <div class="col-md-3 pl-0"><span>diễn viên:</span></div>
+          <div class="col-md-9">{{movie.actor}}</div>
+        </div>
+        <div class="movie-detail_info d-flex">
+          <div class="col-md-3 pl-0"><span>thể loại:</span></div>
+          <div class="col-md-9">{{movie.category}}</div>
+        </div>
+        <div class="movie-detail_info d-flex">
+          <div class="col-md-3 pl-0"><span>thời lượng:</span></div>
+          <div class="col-md-9">{{movie.time}}</div>
+        </div>
+        <div class="movie-detail_info d-flex">
+          <div class="col-md-3 pl-0"><span>ngôn ngữ:</span></div>
+          <div class="col-md-9">{{movie.language}}</div>
+        </div>
+        <div class="movie-detail_info d-flex">
+          <div class="col-md-3 pl-0"><span>ngày khởi chiếu:</span></div>
+          <div class="col-md-9">{{movie.releaseDay}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5 mb-5">
+      <div class="col-md-12 tab">
+        <div class="movie-detail_tabs d-flex">
+          <div id="29" class="tab-item active">
+            <a href="#">29/11</a>
+          </div>
+          <div id="30" class="tab-item">
+            <a href="#">30/11</a>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div class="movie-detail_tab-content">
+          <div class="tab-pane active">
+            <div class="row">
+              <div class="col-md-12">
+                <span>2D phụ đề</span>
+              </div>
+              {{#each showtime}}
+                <div class="col-md-2 mt-3 tab-pane_item  text-center">
+                  <a href="#" class="btn default showtime "+>{{this.startAt}}</a>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+          <div class="tab-pane">
+            <div class="row">
+              <div class="col-md-12">
+                <span>2D phụ đề</span>
+              </div>
+              {{#each showtime}}
+                <div class="col-md-2 mt-3 tab-pane_item text-center">
+                  <a href="#" class="btn default showtime">{{this.endAt}}</a>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="trailer pb-5">
+  <div class="container">
+    <div class="title-show">
+      <h2 class="text-center trailer_title pt-5 pb-4">
+        trailer
+      </h2>
+    </div>
+    <div class="trailer_video text-center">
+      <iframe
+        width="100%"
+        height="600px"
+        src="https://www.youtube.com/embed/{{movie.trailerId}}"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+<script>
+    const $ = document.querySelector.bind(document)
+    const $$ = document.querySelectorAll.bind(document)
+    const showtime = $$('.showtime')
+    console.log(showtime[0]);
+    const tabs = $$('.tab-item')
+                      const panes = $$('.tab-pane')
+
+    const tabActive = $('.tab-item.active')
+    const line = $('.line')
+
+    line.style.width = tabActive.offsetWidth + "px";
+    line.style.left = tabActive.offsetLeft + "px";
+
+    tabs.forEach((tab, index) => {
+        const pane = panes[index]
+        tab.onclick = function (e) {
+            e.preventDefault();
+            $('.tab-item.active').classList.remove('active')
+            $('.tab-pane.active').classList.remove('active')
+
+            line.style.width = this.offsetWidth + "px";
+            line.style.left = this.offsetLeft + "px";
+            
+            this.classList.add('active')
+            pane.classList.add('active')
+        }
+    })
+
+</script>

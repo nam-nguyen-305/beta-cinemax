@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="mt-4 mb-5">
+    <div class="trash">
+      <h3 class="title-admin">Danh sách suất chiếu</h3>
+      <div class="action mb-3">
+        <a class=" mr-3 action-item"href="/showtimes/create">Thêm suất chiếu</a>
+        <a  class="mr-3 action-item" href="/me/trash/showtimes">Suất chiếu đã xóa ({{deletedCount}}) &#8594;</a>
+      </div>
+      
+    </div>
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Ngày chiếu</th>
+          <th scope="col">Giờ chiếu</th>
+          <th scope="col">Phim</th>
+          <th scope="col">Phòng</th>
+          <th scope="col" colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each Showtimes}}
+          <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.day}}</td>
+            <td>{{this.startAt}} - {{this.endAt}}</td>
+            <td>{{this.movie.name}}</td>
+            <td>{{this.room.name}}</td>
+            <td>
+              <a href="/showtimes/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+              <a
+                href=""
+                class="btn btn-link"
+                data-toggle="modal"
+                data-target="#deleteShowtimeModal"
+                data-id="{{this._id}}"
+              >Xóa</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">
+              Bạn chưa đăng phim nào! <a href="/showtimes/create">Thêm phòng</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{! Confirm Delete }}
+
+  <div id="deleteShowtimeModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Xóa phòng</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn chắc chắn muốn xóa phòng này?</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            id="btn-delete-showtime"
+            type="button"
+            class="btn btn-danger"
+          >Xóa bỏ</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- Delete-hidden-form --}}
+<form method="POST" name="delete-showtime-form"></form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() { 
+    var showtimeID ;
+    var deleteForm=document.forms['delete-showtime-form'];
+    var btnDeleteShowtime = document.getElementById('btn-delete-showtime'); 
+
+    //When delete confirm click
+    $('#deleteShowtimeModal').on('show.bs.modal', function (event) { 
+      var button =$(event.relatedTarget) 
+      showtimeID = button.data('id') }); 
+    //When delete course btn click 
+    btnDeleteShowtime.onclick=function() { deleteForm.action='/showtimes/'+showtimeID +'?_method=DELETE'; 
+    deleteForm.submit(); } 
+  });
+
+</script>

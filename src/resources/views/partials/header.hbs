@@ -1,0 +1,89 @@
+
+<div class="pre-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 d-flex justify-content-end">
+        {{#if user}}
+          <div class="dropdown">
+            <button
+              class="btn btn-user dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >{{fullname}}</button>
+            {{#iff role '==' '1'}}
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Quản lý tài khoản</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/me/stored/movies">Quản lý phim</a>
+
+                <a class="dropdown-item" href="/me/stored/rooms">Quản lý phòng</a>
+
+                <a class="dropdown-item" href="/me/stored/showtimes">Quản lý suất chiếu</a>
+                
+                <a class="dropdown-item" href="/logout">Đăng xuất</a>
+              </div>
+            {{else}}
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Tài khoản của tôi</a>
+                <a class="dropdown-item" href="#">Vé của tôi</a>
+                <a class="dropdown-item" href="/logout">Đăng xuất</a>
+              </div>
+            {{/iff}}
+          </div>
+        {{else}}
+          <ul class="log-reg list-inline row align-items-center">
+            <li class="login pre-header_item">
+              <a href="/login">Đăng nhập</a>
+            </li>
+            <li class="reg pre-header_item">
+              <a href="/register">Đăng kí</a>
+            </li>
+          </ul>
+        {{/if}}
+        <div class="usa pl-4">
+          <a href="#">
+            <img src="/img/united-kingdom.png" alt="usa" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-2 header_logo">
+        <a href="/">
+          <img src="/img/logo.png" alt="" />
+        </a>
+      </div>
+      <div class="col-10 header_menu">
+        <ul class="list-inline row align-items-center justify-content-end">
+          <li class="header_menu_item">
+            <a href="#">Lịch chiếu theo rạp</a>
+          </li>
+          <li class="header_menu_item">
+            <a href="#">Phim</a>
+          </li>
+          <li class="header_menu_item">
+            <a href="#">Rạp</a>
+          </li>
+          <li class="header_menu_item">
+            <a href="#">Giá vé</a>
+          </li>
+          <li class="header_menu_item">
+            <a href="#">tin mới và ưu đãi</a>
+          </li>
+          <li class="header_menu_item">
+            <a href="#">Nhượng quyền</a>
+          </li>
+          <li class="header_menu_item">
+            <a href="#">Thành viên</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
